@@ -1,0 +1,3 @@
+[run]
+source = lead_crud
+omit = lead_crud/test*
