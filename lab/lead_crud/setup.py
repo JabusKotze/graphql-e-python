@@ -16,14 +16,18 @@ requires = [
     'pyramid_retry',
     'pyramid_tm',
     'SQLAlchemy',
+    'sqlalchemy_utils',
     'transaction',
     'zope.sqlalchemy',
+    'alembic',
     'waitress',
-    'graphene-sqlalchemy>=2.0',
+    'graphene>=2.0',
     'webob-graphql>=1.0.dev',
 ]
 
 tests_require = [
+    'ipython',
+    'ipdb',
     'WebTest >= 1.3.1',  # py3 compat
     'pytest',
     'pytest-cov',

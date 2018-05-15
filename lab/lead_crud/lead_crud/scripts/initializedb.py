@@ -15,7 +15,7 @@ from ..models import (
     get_session_factory,
     get_tm_session,
     )
-from ..models import MyModel
+from ..models.lead import Lead
 
 
 def usage(argv):
@@ -41,5 +41,16 @@ def main(argv=sys.argv):
     with transaction.manager:
         dbsession = get_tm_session(session_factory, transaction.manager)
 
-        model = MyModel(name='one', value=1)
-        dbsession.add(model)
+        for n in range(10):
+
+            model = Lead(
+                product='my-loan',
+                email=f'houston_test_{n}',
+                name=f'Houston {n}',
+                cpf=f'{n}{n}{n}.{n}{n}{n}.{n}{n}{n}-{n}{n}',
+                employment_salary='7000.00',
+                loan_reason=f'Build a rocket - trying for the {n} time.',
+                loan_principal='50000.00',
+                loan_instalment_number=12
+            )
+            dbsession.add(model)
