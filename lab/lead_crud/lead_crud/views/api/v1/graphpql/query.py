@@ -1,5 +1,6 @@
 import graphene
 from graphene import relay
+from sqlalchemy.orm.exc import NoResultFound
 
 from lead_crud.models import lead as lead_models
 from . import mutations
@@ -18,7 +19,9 @@ class Query(graphene.ObjectType):
     def resolve_lead(self, info, **kwargs):
 
         try:
-            return info.context['request'].query(lead_models.Lead).filter(lead_models.Lead.uuid == kwargs.get('uuid').hex).one()
+            return info.context['request'].dbsession.query(lead_models.Lead).filter(
+                lead_models.Lead.uuid == kwargs.get('uuid').hex
+            ).one()
         except NoResultFound:
             return
 

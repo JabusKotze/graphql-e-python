@@ -12,7 +12,7 @@ class Lead(Base):
 
     id = sa.Column(sa.Integer, primary_key=True)
 
-    uuid = sa.Column(sa_utils.UUIDType, default=lambda: uuid.uuid4())
+    uuid = sa.Column(sa.String(32), default=lambda: uuid.uuid4().hex)
 
     product = sa.Column(sa.String(100), nullable=False)
     email = sa.Column(sa.String(255), nullable=False)

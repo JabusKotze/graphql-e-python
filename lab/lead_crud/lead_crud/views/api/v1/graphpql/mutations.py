@@ -26,6 +26,7 @@ def update_lead(request: Request, **lead_data: Dict[str, str]) -> Lead:
 
 
 def delete_lead(request: Request, **lead_data: Dict[str, str]) -> Lead:
+    # TODO: criteria to delete...
     return Lead(**lead_data)
 
 
@@ -44,6 +45,9 @@ class NewLead(relay.ClientIDMutation):
     lead = graphene.Field(Lead)
     @classmethod
     def mutate_and_get_payload(cls, root, info, **kwargs) -> 'NewLead':
+
+        client_mutation_id = kwargs['client_mutation_id']
+        del(kwargs['client_mutation_id'])
 
         lead = create_lead(info.context['request'], **kwargs)
 
@@ -66,6 +70,9 @@ class UpdatedLead(relay.ClientIDMutation):
     @classmethod
     def mutate_and_get_payload(cls, root, info, **kwargs) -> 'UpdatedLead':
 
+        client_mutation_id = kwargs['client_mutation_id']
+        del(kwargs['client_mutation_id'])
+
         lead = update_lead(info.context['request'], **kwargs)
 
         return UpdatedLead(lead=lead)
@@ -87,6 +94,9 @@ class DeletedLead(relay.ClientIDMutation):
 
     @classmethod
     def mutate_and_get_payload(cls, root, info, **kwargs) -> 'DeletedLead':
+
+        client_mutation_id = kwargs['client_mutation_id']
+        del(kwargs['client_mutation_id'])
 
         lead = delete_lead(info.context['request'], **kwargs)
 
