@@ -5,6 +5,7 @@ Objetivo
 --------
 
 Esse é um primeiro exemplo de um projeto completo utilizando:
+
     * Python3.x (x>=6)
     * Pyramid
     * Graphql (graphene)
