@@ -1,0 +1,7 @@
+{
+  "binary": "/home/alexandre/Envs/graphql-e-python/bin/pyre.bin",
+  "source_directories": [
+    "."
+  ],
+  "typeshed": "/home/alexandre/Envs/graphql-e-python/lib/pyre_check/typeshed/stdlib/"
+}
