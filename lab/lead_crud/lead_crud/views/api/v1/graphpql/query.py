@@ -10,7 +10,7 @@ from . import schemas
 class Query(graphene.ObjectType):
 
     node = relay.Node.Field()
-    leads = graphene.List(schemas.Lead)
+    leads = graphene.List(schemas.Lead, uuid=graphene.UUID())
     lead = graphene.Field(schemas.Lead, uuid=graphene.UUID())
 
     def resolve_leads(self, info, **kwargs):
