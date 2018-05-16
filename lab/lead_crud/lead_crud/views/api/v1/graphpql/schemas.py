@@ -16,6 +16,10 @@ class Lead(graphene.ObjectType):
     loan_reason = graphene.String(description='The reason to the loan request')
     loan_principal = graphene.String(description='The loan request value')
     loan_instalment_number = graphene.String(description='The number of instalments')
+    whoami = graphene.String(description='Identify this user.')
+
+    def resolve_whoami(self, info):
+        raise ValueError('who wants to know???')
 
 
 class LeadConnection(relay.Connection):
