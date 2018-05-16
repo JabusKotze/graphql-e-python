@@ -30,4 +30,60 @@ Esses são os passos que você precisa executar para utilizar o projeto
         pserve development.ini
 
 
-Com a aplicação em execução, você deve conseguir acessar o endpoint `http://0.0.0.0:6543/api/v1/graphql`. Nesse endpoint, você terá acesso ao `GraphiQL` - uma interface para executar queries, mutations  e etc.
+Com a aplicação em execução, você deve conseguir acessar o endpoint `http://0.0.0.0:6543/api/v1/graphql`.
+Nesse endpoint, você terá acesso ao `GraphiQL` - uma interface para executar queries, mutations  e etc.
+
+
+Exemplo de queries e mutations
+------------------------------
+
+* Recuperar `uuid`, `name` e `email`
+
+    ```graphql
+    {
+        leads {
+            uuid
+            name
+            email
+        }
+    }
+    ```
+
+* Criar um novo lead:
+
+    ```graphql
+        mutation {
+            newLead(
+                input:{
+                    name: "Houston hero", cpf: "41083499890", product: "lead-app",
+                    email: "foo@bar.bleh", employmentSalary:"5000", loanPrincipal: "500000", loanReason: "GimmeMoney",
+                    loanInstalmentNumber: "12", clientMutationId: "foo"
+                }
+            ){
+                lead {
+                    uuid
+                }
+            }
+        }
+    ```
+
+* Atualizar um lead:
+
+    ```graphql
+        mutation{
+          updateLead(input: {uuid: "a1a6f201f0eb4bf5ba261557aef9db26", name:"Name without typo"}) {
+            lead{
+              name
+            }
+          }
+        }
+    ```
+
+* Excluir um lead:
+
+    ```graphql
+        mutation{
+          updateLead(input: {uuid: "a1a6f201f0eb4bf5ba261557aef9db26", name:"Name without typo"}) {
+          }
+        }
+    ```

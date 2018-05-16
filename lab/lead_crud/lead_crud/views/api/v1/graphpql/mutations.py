@@ -13,11 +13,12 @@ from .schemas import Lead
 
 def create_lead(request: Request, **lead_data: Dict[str, str]) -> Lead:
 
-    lead = lead_models.Lead(**lead_data)
-
     with transaction.manager:
         lead = lead_models.Lead(**lead_data)
         request.dbsession.add(lead)
+
+        request.dbsession.flush()  # Flushing to update the attribute uuid with the default value
+        lead_data['uuid'] = lead.uuid
 
     return Lead(**lead_data)
 
