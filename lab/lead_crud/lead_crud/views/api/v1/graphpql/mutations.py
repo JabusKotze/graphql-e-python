@@ -86,9 +86,6 @@ class UpdatedLead(relay.ClientIDMutation):
         loan_principal = graphene.String()
         loan_instalment_number = graphene.String()
 
-    class Arguments:
-        uuid = graphene.String(required=True)
-
     lead = graphene.Field(Lead)
     @classmethod
     def mutate_and_get_payload(cls, root, info, **kwargs) -> 'UpdatedLead':
